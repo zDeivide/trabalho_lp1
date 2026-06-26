@@ -78,7 +78,6 @@ vector<ItemVenda> itensVenda;
 
 void relatorioFuncionario(int totalFuncionarios, int totalVendas, int totalItens)
 {
-
     if (totalVendas == 0)
     {
         cout << "\nNenhuma venda cadastrada.\n";
@@ -120,19 +119,18 @@ void relatorioFuncionario(int totalFuncionarios, int totalVendas, int totalItens
 // ─────────────────────────────────────────
 double menuPrincipal()
 {
-
     double escolha;
 
-    cout << "\n1 - Cadastro de Funcionários\n";
+    cout << "\n1 - Cadastro de Funcionarios\n";
     cout << "2 - Cadastro de Clientes\n";
     cout << "3 - Cadastro de Partidas\n";
     cout << "4 - Cadastro de Ingressos\n";
     cout << "5 - Realizar Venda\n";
     cout << "6 - Consultar Vendas\n";
-    cout << "7 - Relatórios\n";
+    cout << "7 - Relatorios\n";
     cout << "0 - Sair\n";
 
-    cout << "Escolha Uma Opção: ";
+    cout << "Escolha Uma Opcao: ";
     cin >> escolha;
 
     return escolha;
@@ -143,7 +141,6 @@ double menuPrincipal()
 // ─────────────────────────────────────────
 void cadastrarIngresso()
 {
-
     if (partidas.empty())
     {
         cout << "\nNenhuma partida cadastrada.\n";
@@ -152,12 +149,11 @@ void cadastrarIngresso()
     }
 
     Ingresso novoIngresso;
-
     novoIngresso.id = ingressos.size() + 1;
 
     cout << "\n===== PARTIDAS DISPONIVEIS =====\n";
 
-    for (int i = 0; i < partidas.size(); i++)
+    for (size_t i = 0; i < partidas.size(); i++)
     {
         cout << "ID: " << partidas[i].id
             << " | "
@@ -182,27 +178,22 @@ void cadastrarIngresso()
     cout << "\nIngresso cadastrado com sucesso!\n";
 }
 
-
 // ─────────────────────────────────────────
 //  CADASTRO DE FUNCIONÁRIOS : Gabriel
 // ─────────────────────────────────────────
 
 void addworker()
 {
-	string nome, cargo;
-
-
     Funcionario novoFuncionario;
-
     novoFuncionario.id = funcionarios.size() + 1;
 
-	cin.ignore(); // Limpa o buffer do cin antes de usar getline
+    cin.ignore(); // Limpa o buffer do cin antes de usar getline
 
-	cout << "\nDigite o nome do funcionário: ";
-	getline(cin, novoFuncionario.nome);
+    cout << "\nDigite o nome do funcionario: ";
+    getline(cin, novoFuncionario.nome);
 
-	cout << "Digite o cargo do funcionário: ";
-	getline(cin, novoFuncionario.cargo);
+    cout << "Digite o cargo do funcionario: ";
+    getline(cin, novoFuncionario.cargo);
 
     funcionarios.push_back(novoFuncionario);
 
@@ -210,14 +201,10 @@ void addworker()
 }
 
 // ─────────────────────────────────────────
-
-
-// ─────────────────────────────────────────
 //  CADASTRO DE CLIENTES: Marivaldo
 // ─────────────────────────────────────────
 void addClient(string nome, string cpf)
 {
-
     Cliente novoCliente;
 
     novoCliente.id = clientes.size() + 1;
@@ -232,7 +219,6 @@ void addClient(string nome, string cpf)
 // ─────────────────────────────────────────
 void addmatch(string homeTeam, string awayTeam, string Date)
 {
-
     Partida newMatch;
 
     newMatch.id = partidas.size() + 1;
@@ -248,7 +234,6 @@ void addmatch(string homeTeam, string awayTeam, string Date)
 // ─────────────────────────────────────────
 void relatorioCliente(int totalClientes, int totalVendas)
 {
-
     if (totalVendas == 0)
     {
         cout << "\nNenhuma Venda Cadastrada\n";
@@ -259,14 +244,12 @@ void relatorioCliente(int totalClientes, int totalVendas)
 
     for (int i = 0; i < totalClientes; i++)
     {
-
         int clientesVendas = 0;
 
         for (int j = 0; j < totalVendas; j++)
         {
             if (vendas[j].idCliente == clientes[i].id)
             {
-
                 clientesVendas++;
 
                 cout << "\nCliente: " << clientes[i].nome;
@@ -282,7 +265,6 @@ void relatorioCliente(int totalClientes, int totalVendas)
 // ─────────────────────────────────────────
 void relatorioPartida(int totalPartidas, int totalVendas)
 {
-
     if (totalVendas == 0)
     {
         cout << "\nNenhuma venda cadastrada.\n";
@@ -323,7 +305,6 @@ void relatorioPartida(int totalPartidas, int totalVendas)
 
 void toppartida()
 {
-
     if (itensVenda.size() == 0)
     {
         cout << "Nenhum ingresso vendido." << endl;
@@ -333,29 +314,22 @@ void toppartida()
     int maiorQuantidade = 0;
     int indiceMaior = -1;
 
-    for (int i = 0; i < partidas.size(); i++)
+    for (size_t i = 0; i < partidas.size(); i++)
     {
-
         int quantidadeIngressos = 0;
 
-        for (int j = 0; j < vendas.size(); j++)
+        for (size_t j = 0; j < vendas.size(); j++)
         {
-
             if (vendas[j].idPartida == partidas[i].id)
             {
-
-                for (int k = 0; k < itensVenda.size(); k++)
+                for (size_t k = 0; k < itensVenda.size(); k++)
                 {
-
                     if (itensVenda[k].idVenda == vendas[j].id)
                     {
                         quantidadeIngressos++;
                     }
-
                 }
-
             }
-
         }
 
         if (quantidadeIngressos > maiorQuantidade)
@@ -376,7 +350,6 @@ void toppartida()
             << " ingressos vendidos."
             << endl;
     }
-
 }
 
 // ─────────────────────────────────────────
@@ -385,7 +358,6 @@ void toppartida()
 
 void consultarVendas()
 {
-
     if (vendas.empty())
     {
         cout << "\nNenhuma venda cadastrada.\n";
@@ -394,7 +366,7 @@ void consultarVendas()
 
     cout << "\n===== CONSULTA DE VENDAS =====\n";
 
-    for (int i = 0; i < vendas.size(); i++)
+    for (size_t i = 0; i < vendas.size(); i++)
     {
         cout << "\nID Venda: " << vendas[i].id;
         cout << "\nData: " << vendas[i].data;
@@ -403,7 +375,7 @@ void consultarVendas()
         cout << "\nID Partida: " << vendas[i].idPartida;
         cout << "\nIngressos da venda:\n";
 
-        for (int j = 0; j < itensVenda.size(); j++)
+        for (size_t j = 0; j < itensVenda.size(); j++)
         {
             if (itensVenda[j].idVenda == vendas[i].id)
             {
@@ -423,7 +395,6 @@ void consultarVendas()
 
 void realizarVenda()
 {
-
     if (clientes.empty())
     {
         cout << "\nNenhum cliente cadastrado.\n";
@@ -444,7 +415,7 @@ void realizarVenda()
 
     cout << "\nClientes cadastrados:\n";
 
-    for (int i = 0; i < clientes.size(); i++)
+    for (size_t i = 0; i < clientes.size(); i++)
     {
         cout << "ID: " << clientes[i].id
             << " | Nome: " << clientes[i].nome << endl;
@@ -458,7 +429,7 @@ void realizarVenda()
 
     cout << "\nPartidas cadastradas:\n";
 
-    for (int i = 0; i < partidas.size(); i++)
+    for (size_t i = 0; i < partidas.size(); i++)
     {
         cout << "ID: " << partidas[i].id
             << " | "
@@ -478,7 +449,7 @@ void realizarVenda()
 
     cout << "\nIngressos cadastrados:\n";
 
-    for (int i = 0; i < ingressos.size(); i++)
+    for (size_t i = 0; i < ingressos.size(); i++)
     {
         cout << "ID: " << ingressos[i].id
             << " | Setor: " << ingressos[i].setor
@@ -499,21 +470,14 @@ void realizarVenda()
 // ─────────────────────────────────────────
 int main()
 {
-
-    //Variáveis Funcionarios
-	string workerName;
-	string workerPosition;
-
-    // Variáveis clientes
     string NomeClient;
     string cpfClient;
 
-    // Variáveis Partidas
     string data;
     string homeTeam;
     string awayTeam;
 
-    cout << "Sistema de Gestão de Ingressos e Sócio Torcedor" << endl;
+    cout << "Sistema de Gestao de Ingressos e Socio Torcedor" << endl;
 
     int choose;
 
@@ -524,18 +488,87 @@ int main()
         switch (choose)
         {
         case 1:
-			addworker();
-			break;
+            addworker();
+            break;
+
+        case 2:
+            cout << "\n===== CADASTRO DE CLIENTE =====\n";
+            cin.ignore();
+            cout << "Digite o nome do cliente: ";
+            getline(cin, NomeClient);
+            cout << "Digite o CPF do cliente: ";
+            getline(cin, cpfClient);
+            
+            addClient(NomeClient, cpfClient);
+            cout << "\n!!!CLIENTE CADASTRADO COM SUCESSO!!!\n";
+            break;
+
+        case 3:
+            cout << "\n===== CADASTRO DE PARTIDA =====\n";
+            cin.ignore();
+            cout << "Time de Casa: ";
+            getline(cin, homeTeam);
+            cout << "Time Visitante: ";
+            getline(cin, awayTeam);
+            cout << "Data da Partida (DD/MM/AAAA): ";
+            getline(cin, data);
+
+            addmatch(homeTeam, awayTeam, data);
+            cout << "\n!!!PARTIDA CADASTRADA COM SUCESSO!!!\n";
+            break;
+
+        case 4:
+            cadastrarIngresso();
+            break;
+
+        case 5:
+            realizarVenda();
+            break;
+
+        case 6:
+            consultarVendas();
+            break;
+
+        case 7:
+            int opcaoRelatorio;
+            cout << "\n===== MENU DE RELATORIOS =====\n";
+            cout << "1 - Total de vendas por Funcionario\n";
+            cout << "2 - Total de vendas por Cliente\n";
+            cout << "3 - Total de vendas por Partida\n";
+            cout << "4 - Partida que mais vendeu ingressos\n";
+            cout << "Escolha uma opcao: ";
+            cin >> opcaoRelatorio;
+
+            switch (opcaoRelatorio)
+            {
+            case 1:
+                relatorioFuncionario(funcionarios.size(), vendas.size(), itensVenda.size());
+                break;
+            case 2:
+                relatorioCliente(clientes.size(), vendas.size());
+                break;
+            case 3:
+                relatorioPartida(partidas.size(), vendas.size());
+                break;
+            case 4:
+                toppartida();
+                break;
+            default:
+                cout << "\nOpcao de relatorio invalida!\n";
+                break;
+            }
+            break;
+
+        case 0:
+            cout << "\nSaindo do sistema... Ate logo!\n";
+            break;
+
+        default:
+            cout << "\nOpcao invalida! Tente novamente.\n";
+            break;
         }
-  
 
     } while (choose != 0);
-
-    int totalPartidas = partidas.size();
-    int totalVendas = vendas.size();
-
-    // relatorioPartida(totalPartidas, totalVendas); -> Utiliza essa função quando o switch for opção 3!
-    //ANTONELA SAFADA e boa ultra premium plus
 
     return 0;
 }
